@@ -43,16 +43,6 @@ async function testConnection() {
     //   console.log(`   - Uptime: ${Math.floor(serverStatus.uptime / 3600)} hours`);
     // }
 
-    // List databases
-    const adminDb = mongoose.connection.db?.admin();
-    if (adminDb) {
-      const { databases } = await adminDb.listDatabases();
-      console.log('\n📚 Available Databases:');
-      databases.forEach((db: any) => {
-        console.log(`   - ${db.name} (${(db.sizeOnDisk / 1024 / 1024).toFixed(2)} MB)`);
-      });
-    }
-
     // List collections in current database
     const collections = await mongoose.connection.db?.listCollections().toArray();
     console.log('\n📦 Collections in current database:');

@@ -3,7 +3,7 @@
 
 import { useScrollActive } from "@/lib/hooks/useScrollActive";
 import { Profile } from "@/lib/types/profile.types";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ShimmerText from "./ui/ShimmerText";
 import ThemeToggle from "./ThemeToggle";
 import { FileText } from "lucide-react";

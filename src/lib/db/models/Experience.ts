@@ -1,5 +1,5 @@
 import { Experience } from '@/lib/types/experience.types';
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 const ExperienceSchema = new Schema<Experience>(
   {

@@ -1,5 +1,5 @@
 import { Project } from '@/lib/types/project.types';
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 const ProjectSchema = new Schema<Project>(
   {

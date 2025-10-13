@@ -4,7 +4,6 @@ import { Profile } from '../types/profile.types';
 import { Experience } from '../types/experience.types';
 import { Education } from '../types/education.types';
 import { Project } from '../types/project.types';
-import Parser from 'rss-parser';
 import { Post } from '../types/post.types';
 
 interface PortfolioData {

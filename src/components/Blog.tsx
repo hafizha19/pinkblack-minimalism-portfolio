@@ -20,7 +20,7 @@ function getTimeAgo(dateString: string): string {
   return `${months} months ago`;
 }
 
-export default function Blog({ posts }: BlogProps) {
+export default function Blog() {
   const { posts: mediumPosts, loading, error } = useMediumPosts();
 
   const allPosts = [

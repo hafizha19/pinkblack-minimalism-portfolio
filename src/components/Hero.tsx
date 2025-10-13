@@ -28,7 +28,7 @@ export const Hero = memo(({ profile }: HeroProps) => {
               transition={{ duration: 0.5 }}
               className="text-3xl md:text-5xl font-semibold tracking-tight"
             >
-              I'm <ShimmerText className="text-base-500">{profile.name}</ShimmerText>, a {profile.role}
+              I&apos;m <ShimmerText className="text-base-500">{profile.name}</ShimmerText>, a {profile.role}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -84,3 +84,5 @@ export const Hero = memo(({ profile }: HeroProps) => {
     </section>
   );
 })
+
+Hero.displayName = 'Hero';

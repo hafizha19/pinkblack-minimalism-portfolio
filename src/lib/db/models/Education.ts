@@ -1,5 +1,5 @@
 import { Education } from '@/lib/types/education.types';
-import mongoose, { Schema, model, models } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 const EducationSchema = new Schema<Education>(
   {
