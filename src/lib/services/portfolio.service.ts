@@ -7,13 +7,11 @@ import Project from '../db/models/Project';
 
 export class PortfolioService {
   static async getProfile() {
-    await dbConnect();
     const profile = await Profile.findOne().lean();
     return profile;
   }
 
   static async getExperiences() {
-    await dbConnect();
     const experiences = await Experience.find({ isActive: true })
       .sort({ order: 1 })
       .lean();
@@ -21,7 +19,6 @@ export class PortfolioService {
   }
 
   static async getEducations() {
-    await dbConnect();
     const educations = await Education.find({ isActive: true })
       .sort({ order: 1 })
       .lean();
@@ -29,7 +26,6 @@ export class PortfolioService {
   }
 
   static async getProjects() {
-    await dbConnect();
     const projects = await Project.find({ isActive: true })
       .sort({ order: 1 })
       .lean();

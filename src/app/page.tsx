@@ -1,36 +1,32 @@
-// app/page.tsx
 "use client"
 
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import { usePortfolioData } from "@/lib/hooks/usePortfolioData";
 import Header from "@/components/Header";
-import { Hero } from "@/components/Hero";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
-import ErrorState from "@/components/ui/ErrorState";
 import Skills from "@/components/Skills";
 import About from "@/components/About";
-import Experiences from "@/components/Experience";
-import Educations from "@/components/Education";
-import Projects from "@/components/Project";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
+import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import Blog from "@/components/Blog";
+import { SkeletonLoader } from "@/components/ui/Skeletons";
+import ErrorState from "@/components/ui/ErrorState";
+import Projects from "@/components/Project";
+import { Hero } from "@/components/Hero";
 
-export default function PortfolioPage() {
+function PortfolioContent() {
   const { data, loading, error } = usePortfolioData();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       document.documentElement.style.scrollBehavior = "smooth";
+      document.documentElement.classList.add('dark');
     }
   }, []);
 
   if (loading) {
-    return (
-      <main className="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 min-h-screen flex items-center justify-center">
-        <LoadingSpinner />
-      </main>
-    );
+    return <SkeletonLoader />;
   }
 
   if (error || !data.profile) {
@@ -45,14 +41,24 @@ export default function PortfolioPage() {
     <main className="bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 min-h-screen">
       <Header profile={data.profile} />
       <Hero profile={data.profile} />
-      <Skills skills={data.profile.skills} />
+      <Skills skills={data.profile.skills || []} />
       <About />
-      <Experiences experiences={data.experiences} />
-      <Educations educations={data.educations} />
-      <Projects projects={data.projects} />
-      <Blog />
+      <Experience experiences={data.experiences || []} />
+      <Education educations={data.educations || []} />
+      <Projects projects={data.projects || []} />
+      <Suspense fallback={<div className="mx-auto max-w-6xl px-4 py-12"><p className="text-center text-zinc-500">Loading blogs...</p></div>}>
+        <Blog posts={data.posts || []} />
+      </Suspense>
       <Contact profile={data.profile} />
       <Footer profile={data.profile} />
     </main>
+  );
+}
+
+export default function PortfolioPage() {
+  return (
+    <Suspense fallback={<SkeletonLoader />}>
+      <PortfolioContent />
+    </Suspense>
   );
 }

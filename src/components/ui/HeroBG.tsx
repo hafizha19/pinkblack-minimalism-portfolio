@@ -1,5 +1,6 @@
 // components/ui/HeroBG.tsx
 import React from "react";
+import { Analytics } from "@vercel/analytics/react"
 
 export default function HeroBG() {
   return (
@@ -12,7 +13,7 @@ export default function HeroBG() {
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
-      </svg>
+      </svg><Analytics />
     </div>
   );
 }
